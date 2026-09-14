@@ -112,12 +112,12 @@ export function CustomCursor() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[140] hidden lg:block mix-blend-difference"
+      className="pointer-events-none fixed inset-0 z-[140] hidden lg:block"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 220ms linear" }}
     >
       <div
         ref={ringRef}
-        className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 will-change-transform mix-blend-difference"
       >
         <div
           className={[
@@ -145,7 +145,7 @@ export function CustomCursor() {
       <div
         ref={dotRef}
         className={[
-          "absolute left-0 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bone will-change-transform",
+          "absolute left-0 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bone will-change-transform mix-blend-difference",
           "transition-opacity duration-[300ms]",
           mode === "default" ? "opacity-100" : "opacity-0",
         ].join(" ")}
