@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   LION YARD REAL ESTATE — DESIGN TOKENS
+   Black + White + Architecture. Champagne is an accent, never a theme.
+   ========================================================================= */
+
+@theme {
+  /* ---- Colour ---------------------------------------------------------- */
+  --color-ink: #111111;
+  --color-charcoal: #1b1b1b;
+  --color-graphite: #2a2a2a;
+  --color-bone: #f5f4f1;
+  --color-paper: #ffffff;
+  --color-champagne: #b8a47a;
+
+  /* Neutral ramp derived from ink — used for borders, muted copy, hairlines */
+  --color-ash-100: #e7e5e1;
+  --color-ash-200: #cfccc6;
+  --color-ash-300: #9c9892;
+  --color-ash-400: #6b6862;
+  --color-ash-500: #3d3b37;
+
+  /* ---- Typography ------------------------------------------------------ */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* Fluid editorial scale. Min = 360px viewport, max = 1920px viewport. */
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.5;
+  --text-body-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --text-body-sm--line-height: 1.65;
+  --text-body: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  --text-body--line-height: 1.7;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.4vw, 1.375rem);
+  --text-lead--line-height: 1.55;
+  --text-h3: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-h3--line-height: 1.15;
+  --text-h2: clamp(2rem, 1.4rem + 2.8vw, 3.75rem);
+  --text-h2--line-height: 1.05;
+  --text-h1: clamp(2.125rem, 1.1rem + 4.6vw, 6rem);
+  --text-h1--line-height: 1;
+  /* Floor is set so "The Right Property." holds one line at 360px. */
+  --text-display: clamp(2.375rem, 0.6rem + 7.4vw, 9.5rem);
+  --text-display--line-height: 0.96;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-lux-in: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-glide: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-micro: 220ms;
+  --duration-ui: 400ms;
+  --duration-reveal: 900ms;
+  --duration-cinema: 1400ms;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --spacing-gutter: clamp(1.25rem, 0.6rem + 2.8vw, 4.5rem);
+  --spacing-section: clamp(4.5rem, 2rem + 8vw, 10rem);
+  --container-shell: 108rem;
+
+  /* ---- Elevation (used sparingly — this is not a shadow-heavy brand) ---- */
+  --shadow-lift: 0 24px 60px -32px rgb(17 17 17 / 0.45);
+}
+
+/* =========================================================================
+   RESET / BASE
+   ========================================================================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto; /* Lenis owns scrolling */
+  }
+
+  /* Lenis binds to <html>; this keeps native scroll available as a fallback */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  p { margin: 0; }
+
+  img, video, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button { font: inherit; color: inherit; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection {
+    background-color: var(--color-champagne);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Hide focus rings for pointer users only — keyboard rings always show */
+  :focus:not(:focus-visible) { outline: none; }
+
+  /* The native cursor is hidden only once the custom cursor is actually
+     mounted and running, so a visitor can never be left with no cursor. */
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none;
+  }
+}
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+
+@utility shell {
+  width: 100%;
+  max-width: var(--container-shell);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Uppercase micro-label used across nav, eyebrows and buttons */
+@utility label-caps {
+  font-family: var(--font-sans);
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+@utility display-serif {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  /* Cormorant defaults to old-style figures: the 1 reads as a roman I and the
+     3, 4, 5, 7 and 9 drop below the baseline. Beautiful in running prose,
+     unusable for "AED 12,500,000" — the price is the single most important
+     number on a property site and it has to be unambiguous at a glance.
+     Both properties are set because support varies by build. */
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+/* Clip mask for line-by-line text reveals */
+@utility reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.15em;
+  margin-top: -0.15em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+@utility screen-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* =========================================================================
+   ANIMATION PRIMITIVES
+
+   Animated elements start hidden. If JavaScript never runs, the <noscript>
+   override in the document body un-hides all of them and removes the branded
+   curtain, so the page stays complete and readable without a single script.
+   ========================================================================= */
+
+/* The branded curtain covers the whole viewport; only JS lifts it. */
+[data-preloader] {
+  display: block;
+}
+
+[data-anim="rise"] {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0);
+  will-change: transform, opacity;
+}
+
+[data-anim="fade"] {
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* The .reveal-line wrapper is the MASK and must never move — only its child
+   slides. Animating the wrapper would carry the mask along with the text and
+   defeat the whole effect. */
+[data-anim="line"] > * > * {
+  display: block;
+  opacity: 0;
+  transform: translate3d(0, 110%, 0);
+  will-change: transform, opacity;
+}
+
+/* Header elements animate in individually once the curtain lifts. */
+[data-head] {
+  opacity: 0;
+}
+
+/* Section-entry pre-states, cleared by useSectionReveal. */
+[data-reveal="item"] {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  will-change: transform, opacity;
+}
+
+/* Set once the entry animation is done: drops the transform (and with it the
+   stacking context it creates, which would trap dropdown panels) and releases
+   the compositor hint. */
+[data-reveal="item"][data-revealed] {
+  transform: none;
+  will-change: auto;
+}
+
+[data-reveal="media"] {
+  clip-path: inset(0% 0% 100% 0%);
+  will-change: clip-path;
+}
+
+/* =========================================================================
+   REDUCED MOTION
+   Everything is immediately visible and nothing translates.
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-anim],
+  [data-anim="line"] > * > *,
+  [data-head],
+  [data-reveal="item"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-reveal="media"] {
+    clip-path: none !important;
+  }
+}
+
+/* =========================================================================
+   KEYFRAMES
+   ========================================================================= */
+
+@keyframes ly-trace {
+  0%   { transform: translateY(-100%); }
+  60%  { transform: translateY(220%); }
+  100% { transform: translateY(220%); }
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
