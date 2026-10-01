@@ -79,7 +79,7 @@ export default function ContactPage() {
       {/* Map Placeholder */}
       <section className="w-full h-[50vh] min-h-[400px] relative bg-charcoal">
         <Image
-          src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=2400&q=80"
+          src="/property images/Binghatti/burj binghatti jacob and co/burj-binghatti-jacob-co-residences_9UNAR_xl.jpg"
           alt="Dubai view"
           fill
           className="object-cover opacity-60"

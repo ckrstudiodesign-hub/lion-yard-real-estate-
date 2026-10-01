@@ -37,19 +37,23 @@ export function Footer() {
       className="relative z-0 bg-ink text-bone"
       aria-labelledby="footer-heading"
     >
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-champagne/30 to-transparent" />
       <div className="shell py-[var(--spacing-section)]">
         {/* ---- Closing statement ---------------------------------------- */}
-        <div className="flex flex-col gap-10 border-b border-bone/10 pb-14 lg:flex-row lg:items-end lg:justify-between lg:gap-20 lg:pb-20">
+        <div className="flex flex-col items-center text-center gap-10 border-b border-bone/10 pb-16 lg:gap-14 lg:pb-24">
+          <p data-reveal="item" className="label-caps text-champagne mb-[-1rem]">
+            Begin Your Journey
+          </p>
           <h2
             id="footer-heading"
             data-reveal="item"
-            className="display-serif max-w-[15ch] text-h1 leading-[0.98]"
+            className="display-serif text-h2 md:text-h1 lg:text-[5rem] leading-[0.95] max-w-[15ch]"
           >
             Let&rsquo;s find your next address.
           </h2>
 
-          <div data-reveal="item" className="shrink-0">
-            <ButtonLink href="/contact" variant="solid">
+          <div data-reveal="item" className="shrink-0 mt-4">
+            <ButtonLink href="/contact" variant="solid" className="px-8 py-4">
               Start a Conversation
               <ArrowRight />
             </ButtonLink>
@@ -57,13 +61,17 @@ export function Footer() {
         </div>
 
         {/* ---- Columns --------------------------------------------------- */}
-        <div className="grid grid-cols-1 gap-x-10 gap-y-12 pt-14 sm:grid-cols-2 lg:grid-cols-12 lg:pt-20">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-12 pt-16 sm:grid-cols-2 lg:grid-cols-12 lg:pt-24">
           <div data-reveal="item" className="lg:col-span-4">
             <Wordmark />
             <p className="mt-7 max-w-[30ch] text-body-sm leading-relaxed text-bone/50">
               {site.legalName}
             </p>
-            <p className="mt-3 text-body-sm text-bone/50">{site.locality}</p>
+            <div className="mt-3 text-body-sm text-bone/50">
+              {contact.address.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
           </div>
 
           <nav data-reveal="item" aria-label="Footer" className="lg:col-span-3">

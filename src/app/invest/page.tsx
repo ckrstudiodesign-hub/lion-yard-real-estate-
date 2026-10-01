@@ -6,6 +6,10 @@ import { ProcessSteps } from "@/components/editorial/ProcessSteps";
 import { EditorialCTA } from "@/components/editorial/EditorialCTA";
 import { heroMedia } from "@/data/media";
 import { site } from "@/data/site";
+import { DEMO_PROPERTIES } from "@/data/properties";
+import { PropertyCard } from "@/components/property/PropertyCard";
+import { TransitionLink } from "@/components/ui/TransitionLink";
+import { ArrowRight } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Property Investment in Dubai",
@@ -51,6 +55,54 @@ export default function InvestPage() {
           },
         ]}
       />
+
+      <section className="relative z-10 bg-bone text-ink py-[var(--spacing-section)]">
+        <div className="shell">
+          <header className="border-t border-ink/12 pt-12 sm:pt-16">
+            <p data-reveal="item" className="label-caps flex items-center gap-4 text-ink/40 mb-6">
+              <span aria-hidden="true" className="block h-px w-10 bg-champagne sm:w-14" />
+              Investment Projects
+            </p>
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-20">
+              <h2
+                data-reveal="item"
+                className="display-serif text-h2 leading-[1.02]"
+              >
+                SELECTED INVESTMENT OPPORTUNITIES
+              </h2>
+              <div className="flex flex-col gap-6 lg:max-w-[34ch] lg:items-start lg:pb-2">
+                <p data-reveal="item" className="text-body font-light text-ink/55 lg:text-lead">
+                  Explore selected residential developments across Dubai.
+                </p>
+                <TransitionLink
+                  data-reveal="item"
+                  href="/properties"
+                  className="group/btn label-caps flex items-center gap-3 text-ink/50 transition-colors duration-[400ms] hover:text-ink"
+                >
+                  View All Projects
+                  <ArrowRight />
+                </TransitionLink>
+              </div>
+            </div>
+          </header>
+
+          <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 sm:mt-24 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
+            {DEMO_PROPERTIES.filter(p => p.investmentFocused).slice(0, 4).map((property, index) => (
+              <div
+                key={property.id}
+                data-reveal="item"
+                className="w-full"
+              >
+                <PropertyCard
+                  property={property}
+                  priority={index < 4}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <ProcessSteps
         title="The Investment Process"

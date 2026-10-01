@@ -12,6 +12,7 @@ import {
 } from "@/lib/filters";
 import { COMMUNITIES, LISTING_TYPES, PROPERTY_STATUSES, PROPERTY_TYPES } from "@/types/property";
 import type { PropertyStatus, PropertyType } from "@/types/property";
+import { CATEGORY_OPTIONS, DEVELOPER_OPTIONS } from "@/lib/filters";
 
 /**
  * Filters ⇄ URL search parameters, so a filtered search is a shareable link.
@@ -49,6 +50,9 @@ const TYPE_MAP = buildMap(PROPERTY_TYPES);
 const STATUS_MAP = buildMap(PROPERTY_STATUSES);
 const LISTING_MAP = buildMap(LISTING_TYPES);
 
+const DEVELOPER_MAP = buildMap(DEVELOPER_OPTIONS.filter(o => o.value !== ANY).map(o => o.value));
+const CATEGORY_MAP = buildMap(CATEGORY_OPTIONS.filter(o => o.value !== ANY).map(o => o.value));
+
 const KEYS = {
   listing: "listing",
   type: "type",
@@ -63,6 +67,8 @@ const KEYS = {
   furnished: "furnished",
   featured: "featured",
   sort: "sort",
+  developer: "developer",
+  category: "category",
 } as const;
 
 /** Serialise to a query string. Empty when nothing differs from the default. */
@@ -90,6 +96,12 @@ export function filtersToParams(filters: PropertyFilters, sort: SortId): URLSear
   if (filters.status !== ANY) set(KEYS.status, STATUS_MAP.toSlug.get(filters.status));
   if (filters.furnished !== ANY) set(KEYS.furnished, slugify(filters.furnished));
   if (filters.featuredOnly) set(KEYS.featured, "1");
+  if (filters.developer !== ANY) {
+    set(KEYS.developer, DEVELOPER_MAP.toSlug.get(filters.developer as never));
+  }
+  if (filters.category !== ANY) {
+    set(KEYS.category, CATEGORY_MAP.toSlug.get(filters.category as never));
+  }
   if (sort !== DEFAULT_SORT) set(KEYS.sort, sort);
 
   return params;
@@ -114,6 +126,8 @@ export function paramsToFilters(params: ParamSource): {
   const type = TYPE_MAP.fromSlug.get(get(KEYS.type) ?? "");
   const community = COMMUNITY_MAP.fromSlug.get(get(KEYS.location) ?? "");
   const status = STATUS_MAP.fromSlug.get(get(KEYS.status) ?? "");
+  const developer = DEVELOPER_MAP.fromSlug.get(get(KEYS.developer) ?? "");
+  const category = CATEGORY_MAP.fromSlug.get(get(KEYS.category) ?? "");
 
   const bedsRaw = get(KEYS.beds);
   const beds = BEDROOM_OPTIONS.includes(bedsRaw as BedroomFilter)
@@ -163,6 +177,8 @@ export function paramsToFilters(params: ParamSource): {
       status: (status as PropertyStatus | undefined) ?? ANY,
       furnished,
       featuredOnly: get(KEYS.featured) === "1",
+      developer: developer ?? ANY,
+      category: category ?? ANY,
     },
     sort: isSortId(sortRaw) ? sortRaw : DEFAULT_SORT,
   };

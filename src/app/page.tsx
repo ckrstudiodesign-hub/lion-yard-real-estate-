@@ -1,14 +1,18 @@
 import { FeaturedProperties } from "@/components/property/FeaturedProperties";
 import { HorizontalShowcase } from "@/components/property/HorizontalShowcase";
 import { PropertyFilterProvider } from "@/components/property/PropertyFilterProvider";
-import { PropertySearch } from "@/components/property/PropertySearch";
-import { ExploreDubai } from "@/components/community/ExploreDubai";
 import { Hero } from "@/components/hero/Hero";
+import { Partners } from "@/components/partners/Partners";
+import { OffPlanLuxuryCollection } from "@/components/off-plan/OffPlanLuxuryCollection";
+
+import { ManagingDirector } from "@/components/editorial/ManagingDirector";
 
 /**
  * Homepage flow:
  *
  *   cinematic hero (dark)
+ *     ↓
+ *   partners (light)
  *     ↓
  *   find your next address / search (light)
  *     ↓
@@ -20,7 +24,6 @@ import { Hero } from "@/components/hero/Hero";
  * header inverts with it. Search, featured and the showcase all sit inside one
  * filter provider, so narrowing the search moves everything beneath it.
  */
-const SEARCH_ID = "search";
 const RESULTS_ID = "properties";
 const COMMUNITIES_ID = "communities";
 const SHOWCASE_ID = "discover";
@@ -28,10 +31,12 @@ const SHOWCASE_ID = "discover";
 export default function HomePage() {
   return (
     <PropertyFilterProvider>
-      <Hero nextSectionId={SEARCH_ID} />
-      <PropertySearch id={SEARCH_ID} resultsId={RESULTS_ID} />
+      {/* Search is removed, so Hero scroll-down arrow points to the featured properties section instead. */}
+      <Hero nextSectionId={RESULTS_ID} />
+      <Partners />
+      <OffPlanLuxuryCollection />
+      <ManagingDirector />
       <FeaturedProperties id={RESULTS_ID} />
-      <ExploreDubai id={COMMUNITIES_ID} />
       <HorizontalShowcase id={SHOWCASE_ID} />
     </PropertyFilterProvider>
   );

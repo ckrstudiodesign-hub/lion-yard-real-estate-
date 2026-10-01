@@ -25,6 +25,8 @@ export const metadata: Metadata = {
  * first paint. Parsing them on the client instead would flash the full set and
  * then correct itself, which looks like a bug.
  */
+import { OffPlanCatalog } from "@/components/off-plan/OffPlanCatalog";
+
 export default async function PropertiesPage({
   searchParams,
 }: {
@@ -40,9 +42,12 @@ export default async function PropertiesPage({
   const { filters, sort } = paramsToFilters(params);
 
   return (
-    <PropertyFilterProvider initialFilters={filters} initialSort={sort}>
-      <PropertiesHero />
-      <PropertyListing />
-    </PropertyFilterProvider>
+    <>
+      <PropertyFilterProvider initialFilters={filters} initialSort={sort}>
+        <PropertiesHero />
+        <PropertyListing />
+      </PropertyFilterProvider>
+      <OffPlanCatalog />
+    </>
   );
 }

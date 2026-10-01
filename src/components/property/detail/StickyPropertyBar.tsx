@@ -71,6 +71,7 @@ export function StickyPropertyBar({ property }: { property: Property }) {
             <p className="display-serif text-[1.35rem] leading-none text-bone">
               {formatPrice(property)}
             </p>
+
             <a
               href={whatsappHref}
               target="_blank"

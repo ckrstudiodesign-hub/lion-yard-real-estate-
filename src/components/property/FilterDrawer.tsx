@@ -10,10 +10,10 @@ import {
   FeaturedToggle,
   FurnishedField,
   LocationField,
-  PriceMaxField,
-  PriceMinField,
   PropertyTypeField,
   StatusField,
+  DeveloperField,
+  CategoryField,
 } from "@/components/property/FilterFields";
 import { usePropertyFilters } from "@/components/property/PropertyFilterProvider";
 import { activeChips } from "@/lib/filters";
@@ -168,10 +168,11 @@ export function FilterDrawer() {
             {[
               { label: "Location", node: <LocationField /> },
               { label: "Property type", node: <PropertyTypeField /> },
+              { label: "Developer", node: <DeveloperField /> },
+              { label: "Category", node: <CategoryField /> },
               { label: "Bedrooms", node: <BedroomsField /> },
               { label: "Bathrooms", node: <BathroomsField /> },
-              { label: "Minimum price", node: <PriceMinField /> },
-              { label: "Maximum price", node: <PriceMaxField /> },
+
               { label: "Minimum area", node: <AreaMinField /> },
               { label: "Maximum area", node: <AreaMaxField /> },
               { label: "Status", node: <StatusField /> },

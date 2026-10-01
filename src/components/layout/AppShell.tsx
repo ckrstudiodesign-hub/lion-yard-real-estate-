@@ -1,14 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { Preloader } from "@/components/hero/Preloader";
 import { IntroProvider } from "@/components/providers/IntroProvider";
 import { PageTransitionProvider } from "@/components/providers/PageTransitionProvider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { CustomCursor } from "@/components/ui/CustomCursor";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 
 /**
  * Single mounting point for every global system, in dependency order:
@@ -26,18 +24,14 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
  * appearing instantly everywhere else.
  */
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
   return (
-    <IntroProvider skip={!isHome}>
+    <IntroProvider skip={true}>
       <SmoothScrollProvider>
         <PageTransitionProvider>
-          {isHome ? <Preloader /> : null}
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <CustomCursor />
+          <WhatsAppFloat />
         </PageTransitionProvider>
       </SmoothScrollProvider>
     </IntroProvider>

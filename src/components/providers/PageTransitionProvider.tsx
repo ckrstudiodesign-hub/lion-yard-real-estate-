@@ -81,6 +81,13 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     if (!pendingRef.current) return;
     if (pendingRef.current !== pathname) return;
 
+    // Immediately snap the scroll position to the top
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+
     pendingRef.current = null;
     setState("revealing");
 

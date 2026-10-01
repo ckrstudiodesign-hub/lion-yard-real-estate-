@@ -26,6 +26,7 @@ export function SpecBar({ property }: { property: Property }) {
 
   const specs: Array<{ label: string; value: string }> = [
     { label: "Price", value: formatPrice(property) },
+
     { label: "Bedrooms", value: String(property.bedrooms) },
     { label: "Bathrooms", value: String(property.bathrooms) },
     { label: "Area", value: formatArea(property) },

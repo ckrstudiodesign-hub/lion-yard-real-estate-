@@ -10,10 +10,10 @@ import {
   FeaturedToggle,
   FurnishedField,
   LocationField,
-  PriceMaxField,
-  PriceMinField,
   PropertyTypeField,
   StatusField,
+  DeveloperField,
+  CategoryField,
 } from "@/components/property/FilterFields";
 import { usePropertyFilters } from "@/components/property/PropertyFilterProvider";
 import { cn } from "@/lib/cn";
@@ -49,6 +49,8 @@ export function FilterBar() {
     filters.status !== "any",
     filters.furnished !== "any",
     filters.featuredOnly,
+    filters.developer !== "any",
+    filters.category !== "any",
   ].filter(Boolean).length;
 
   useIsomorphicLayoutEffect(() => {
@@ -86,7 +88,7 @@ export function FilterBar() {
           <BedroomsField />
         </div>
         <div className={FIELD}>
-          <PriceMinField />
+          <BathroomsField />
         </div>
 
         <button
@@ -133,12 +135,15 @@ export function FilterBar() {
         style={{ height: 0, opacity: 0 }}
         className="overflow-hidden border-t border-ink/10 bg-ink/[0.02]"
       >
-        <div className="grid grid-cols-[repeat(5,minmax(0,1fr))]">
+        <div className="grid grid-cols-[repeat(7,minmax(0,1fr))]">
           <div className={FIELD}>
-            <BathroomsField />
+            <DeveloperField />
           </div>
           <div className={FIELD}>
-            <PriceMaxField />
+            <CategoryField />
+          </div>
+          <div className={FIELD}>
+            <StatusField />
           </div>
           <div className={FIELD}>
             <AreaMinField />
@@ -147,17 +152,11 @@ export function FilterBar() {
             <AreaMaxField />
           </div>
           <div className={FIELD}>
-            <StatusField />
-          </div>
-        </div>
-        <div className="grid grid-cols-[repeat(5,minmax(0,1fr))] border-t border-ink/10">
-          <div className={FIELD}>
             <FurnishedField />
           </div>
           <div className={cn(FIELD, "flex items-end")}>
             <FeaturedToggle />
           </div>
-          <div className="col-span-3" />
         </div>
       </div>
     </div>

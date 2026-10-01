@@ -41,25 +41,25 @@ export default function BuyPage() {
             id: "apartments",
             title: "Apartments",
             href: "/properties?type=Apartment",
-            image: { src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80", alt: "Apartments" },
+            image: { src: "/property images/Binghatti/bugatti residences/bugatti-residences_LFzYK_xl.jpg", alt: "Apartments" },
           },
           {
             id: "villas",
             title: "Villas",
             href: "/properties?type=Villa",
-            image: { src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80", alt: "Villas" },
+            image: { src: "/property images/DAMAC/DAMAC Islands/damac-islands_56syt_xl.jpg", alt: "Villas" },
           },
           {
             id: "townhouses",
             title: "Townhouses",
             href: "/properties?type=Townhouse",
-            image: { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", alt: "Townhouses" },
+            image: { src: "/property images/Deyaar/Tria by Deyaar/tria-by-deyaar_4bUbX_xl.jpg", alt: "Townhouses" },
           },
           {
             id: "penthouses",
             title: "Penthouses",
             href: "/properties?type=Penthouse",
-            image: { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", alt: "Penthouses" },
+            image: { src: "/property images/Binghatti/burj binghatti jacob and co/burj-binghatti-jacob-co-residences_9UNAR_xl.jpg", alt: "Penthouses" },
           },
         ]}
       />
@@ -72,17 +72,17 @@ export default function BuyPage() {
           {
             id: "city",
             title: "City Living",
-            image: { src: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80", alt: "City Living" },
+            image: { src: "/property images/Azizi/Burj Azizi/burj-azizi_0KwEy_xl.jpg", alt: "City Living" },
           },
           {
             id: "waterfront",
             title: "Waterfront Living",
-            image: { src: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80", alt: "Waterfront Living" },
+            image: { src: "/property images/danube/oceanz tower 3/oceanz-tower-3_USVW0_xl.jpg", alt: "Waterfront Living" },
           },
           {
             id: "villa",
             title: "Villa Living",
-            image: { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", alt: "Villa Living" },
+            image: { src: "/property images/DAMAC/DAMAC Lagoons Valencia/valencia-at-damac-lagoons_1d6x3_xl.jpg", alt: "Villa Living" },
           },
         ]}
       />

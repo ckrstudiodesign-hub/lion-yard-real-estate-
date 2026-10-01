@@ -1,10 +1,7 @@
 import type { Community, CommunityImage } from "@/types/community";
 
-const unsplash = (id: string, w = 1600) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
-
-const img = (id: string, alt: string, w = 1600): CommunityImage => ({
-  src: unsplash(id, w),
+const localImg = (src: string, alt: string): CommunityImage => ({
+  src,
   alt,
 });
 
@@ -16,10 +13,10 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "The Heart of Modern Dubai",
     description:
       "A mixed-use flagship mega-development by Emaar Properties, famous for housing the Burj Khalifa, The Dubai Mall, and The Dubai Fountain. Downtown Dubai is a pedestrian-friendly community offering an unparalleled urban lifestyle with luxury apartments, high-end retail, and world-class dining.",
-    heroImage: img("1512453979798-5ea266f8880c", "Downtown Dubai skyline at dusk"),
+    heroImage: localImg("/property images/Azizi/Burj Azizi/burj-azizi_0KwEy_xl.jpg", "Downtown Dubai skyline at dusk"),
     images: [
-      img("1600607687939-ce8a6c25118c", "Downtown views from an apartment"),
-      img("1522708323590-d24dbb6b0267", "Modern architecture in Downtown"),
+      localImg("/property images/Binghatti/bugatti residences/bugatti-residences_6cXwE_xl.jpg", "Downtown views from an apartment"),
+      localImg("/property images/Binghatti/bugatti residences/bugatti-residences_iwGkH_xl.jpg", "Modern architecture in Downtown"),
     ],
     location: "Central Dubai",
     propertyTypes: ["Apartments", "Penthouses"],
@@ -35,9 +32,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "Waterfront Living at its Finest",
     description:
       "An affluent residential neighborhood known for The Beach at JBR, a leisure complex with al fresco dining and sandy stretches to relax on. Smart cafes and pop-up craft markets line waterside promenade Dubai Marina Walk.",
-    heroImage: img("1545324418-cc1a3fa10c00", "Dubai Marina towers rising above the waterfront"),
+    heroImage: localImg("/property images/danube/oceanz tower 3/oceanz-tower-3_USVW0_xl.jpg", "Dubai Marina towers rising above the waterfront"),
     images: [
-      img("1502672260266-1c1ef2d93688", "Marina apartment interior"),
+      localImg("/property images/danube/diamondz/diamondz-by-danube_8qgBE_xl.jpg", "Marina apartment interior"),
     ],
     location: "Coastal Dubai",
     propertyTypes: ["Apartments", "Penthouses", "Villas"],
@@ -53,9 +50,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "The World's Most Iconic Island",
     description:
       "Built in the shape of a palm tree, this artificial archipelago is a landmark in engineering and luxury living. Featuring some of the most opulent resorts, beachfront villas, and luxury apartments in Dubai.",
-    heroImage: img("1613977257363-707ba9348227", "Contemporary villa on Palm Jumeirah"),
+    heroImage: localImg("/property images/Nakheel/como residences/Como-Residences.jpg", "Contemporary villa on Palm Jumeirah"),
     images: [
-      img("1600585154340-be6161a56a0c", "Luxury property interior"),
+      localImg("/property images/Nakheel/bay grove residences/gallery-images-1920x1080-int-01.jpg", "Luxury property interior"),
     ],
     location: "Coastal Dubai",
     propertyTypes: ["Villas", "Apartments", "Penthouses"],
@@ -71,9 +68,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "The New Financial District",
     description:
       "A central business district in Dubai featuring numerous skyscrapers located in an area where Dubai Creek has been dredged and extended. Fast becoming the central hub for global businesses and urban living.",
-    heroImage: img("1600566753086-00f18fb6b3ea", "Business Bay skyline"),
+    heroImage: localImg("/property images/danube/bayz 102/bayz-102_4kK70_xl.jpg", "Business Bay skyline"),
     images: [
-      img("1556912167-f556f1f39fdf", "Business Bay apartment"),
+      localImg("/property images/Binghatti/bugatti residences/bugatti-residences_LFzYK_xl.jpg", "Business Bay apartment"),
     ],
     location: "Central Dubai",
     propertyTypes: ["Apartments", "Offices"],
@@ -89,9 +86,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "The Green Heart of Dubai",
     description:
       "A master-planned community by Emaar featuring a championship golf course, vast parks, and a regional mall. Ideal for families seeking a quiet but connected lifestyle.",
-    heroImage: img("1600585154340-be6161a56a0c", "Dubai Hills villa exterior"),
+    heroImage: localImg("/property images/DAMAC/DAMAC Islands/damac-islands_56syt_xl.jpg", "Dubai Hills villa exterior"),
     images: [
-      img("1560448204-e02f11c3d0e2", "Dubai Hills interior"),
+      localImg("/property images/Nakheel/bay grove residences/gallery-images-1920x1080-int-03.jpg", "Dubai Hills interior"),
     ],
     location: "Central Dubai",
     propertyTypes: ["Villas", "Townhouses", "Apartments"],
@@ -107,9 +104,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "Classic Coastal Luxury",
     description:
       "One of Dubai's oldest and most prestigious coastal residential areas. Known for its low-rise villas, tree-lined streets, and proximity to Jumeirah Beach.",
-    heroImage: img("1600596542815-ffad4c1539a9", "Jumeirah villa exterior"),
+    heroImage: localImg("/property images/DAMAC/DAMAC Lagoons Valencia/valencia-at-damac-lagoons_1d6x3_xl.jpg", "Jumeirah villa exterior"),
     images: [
-      img("1600210492486-724fe5c67fb0", "Jumeirah villa interior"),
+      localImg("/property images/Nakheel/bay grove residences/gallery-images-1920x1080-int-04.jpg", "Jumeirah villa interior"),
     ],
     location: "Coastal Dubai",
     propertyTypes: ["Villas"],
@@ -125,9 +122,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "The Future of Waterfront Living",
     description:
       "An innovative new development on the banks of Dubai Creek. Offering stunning views of the Downtown skyline and promising to be a major new hub for the city.",
-    heroImage: img("1518684079-3c830dcef090", "Dubai Creek Harbour sunset"),
+    heroImage: localImg("/property images/Nakheel/bay grove residences/bay-grove-residences.jpg", "Dubai Creek Harbour sunset"),
     images: [
-      img("1493809842364-78817add7ffb", "Creek Harbour apartment interior"),
+      localImg("/property images/Nakheel/bay grove residences/gallery-images-1920x1080-int-05.jpg", "Creek Harbour apartment interior"),
     ],
     location: "Dubai Creek",
     propertyTypes: ["Apartments", "Penthouses"],
@@ -143,9 +140,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "A Connected Community",
     description:
       "A family-friendly development designed to provide a sense of community. Featuring numerous parks, sports fields, and schools, JVC is a popular choice for young families and professionals.",
-    heroImage: img("1502672260266-1c1ef2d93688", "JVC apartment exterior"),
+    heroImage: localImg("/property images/danube/serenz/serenz-by-danube_3ZZge_xl.jpg", "JVC apartment exterior"),
     images: [
-      img("1600607687920-4e2a09cf159d", "JVC apartment interior"),
+      localImg("/property images/Binghatti/bugatti residences/bugatti-residences_OiD5w_xl.jpg", "JVC apartment interior"),
     ],
     location: "Central Dubai",
     propertyTypes: ["Apartments", "Townhouses", "Villas"],
@@ -161,9 +158,9 @@ export const DEMO_COMMUNITIES: Community[] = [
     shortDescription: "Expansive Family Living",
     description:
       "A massive entertainment and residential district offering a wide variety of housing options. From affordable apartments to luxury villas, Dubailand caters to a diverse population.",
-    heroImage: img("1560448204-e02f11c3d0e2", "Dubailand property"),
+    heroImage: localImg("/property images/Dugasta/Terra Tower/terra-tower_IrlaY_xl.jpg", "Dubailand property"),
     images: [
-      img("1493809842364-78817add7ffb", "Dubailand interior"),
+      localImg("/property images/Nakheel/bay grove residences/gallery-images-1920x1080-int-01.jpg", "Dubailand interior"),
     ],
     location: "Inland Dubai",
     propertyTypes: ["Villas", "Townhouses", "Apartments"],

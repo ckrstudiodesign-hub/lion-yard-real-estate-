@@ -15,15 +15,14 @@ export type Media = {
   blurDataURL?: string;
 };
 
-const UNSPLASH = (id: string, w = 2400) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+
 
 /** Neutral charcoal blur — matches the hero overlay, so the load is seamless. */
 export const CHARCOAL_BLUR =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYjFiMWIiLz48L3N2Zz4=";
 
 export const heroMedia: Media = {
-  src: UNSPLASH("1512453979798-5ea266f8880c", 2560),
+  src: "/property images/Nakheel/palm central banner/palm-central_banner.jpg",
   alt: "Dubai skyline at dusk, seen across the water from the Business Bay waterfront.",
   blurDataURL: CHARCOAL_BLUR,
 };

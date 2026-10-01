@@ -56,25 +56,32 @@ export function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
-    document.documentElement.classList.add("has-custom-cursor");
-
     const dotX = gsap.quickTo(dot, "x", { duration: 0.12, ease: "power3.out" });
     const dotY = gsap.quickTo(dot, "y", { duration: 0.12, ease: "power3.out" });
     const ringX = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3.out" });
     const ringY = gsap.quickTo(ring, "y", { duration: 0.45, ease: "power3.out" });
 
     const onMove = (event: PointerEvent) => {
+      const target = event.target as Element | null;
+      const inCustomZone = target?.closest?.('[data-cursor]');
+
+      if (!inCustomZone) {
+        setVisible(false);
+        document.documentElement.classList.remove("has-custom-cursor");
+        return;
+      }
+
+      document.documentElement.classList.add("has-custom-cursor");
+      setVisible(true);
       dotX(event.clientX);
       dotY(event.clientY);
       ringX(event.clientX);
       ringY(event.clientY);
-      setVisible(true);
 
       // One `closest` call across both selector groups, so the NEAREST match
       // wins. That is what lets a button inside the hero read as "hover" while
       // the hero itself reads as "explore" — and a property card, which carries
       // its own data-cursor, override the generic interactive state.
-      const target = event.target as Element | null;
       const zone = target?.closest?.(
         '[data-cursor], a[href], button:not([disabled]), [role="button"], input, textarea, select',
       ) as HTMLElement | null;
@@ -88,8 +95,13 @@ export function CustomCursor() {
       setMode(isCursorMode(declared) ? declared : "hover");
     };
 
-    const onLeave = () => setVisible(false);
-    const onEnter = () => setVisible(true);
+    const onLeave = () => {
+      setVisible(false);
+      document.documentElement.classList.remove("has-custom-cursor");
+    };
+    const onEnter = () => {
+      // We don't set true here because we need to wait for onMove to check inHero
+    };
 
     window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerleave", onLeave);

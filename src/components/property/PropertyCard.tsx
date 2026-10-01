@@ -66,7 +66,7 @@ export function PropertyCard({
         href={`/properties/${property.slug}`}
         data-cursor="view"
         className="block focus-visible:outline-offset-8"
-        aria-label={`${property.title}, ${property.location} — ${formatPrice(property)}. View property.`}
+        aria-label={`${property.title}, ${property.location}. View property.`}
       >
         <div
           data-card-media
@@ -85,6 +85,7 @@ export function PropertyCard({
           >
             <PropertyImage
               image={property.image}
+              images={property.images}
               fallbackLabel={`${property.title} — ${property.location}`}
               sizes={sizes}
               priority={priority}

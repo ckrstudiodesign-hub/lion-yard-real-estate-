@@ -44,7 +44,7 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7 h-[600px] relative bg-charcoal">
             <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80"
+              src="/property images/Sobha/Sobha Central/sobha-central.jpg"
               alt="Office interior"
               fill
               className="object-cover"

@@ -28,6 +28,15 @@ export const COMMUNITIES = [
   "Dubai Creek Harbour",
   "JVC",
   "Dubai Land",
+  "Dubai South",
+  "Dubai Maritime City",
+  "Meydan",
+  "Jumeirah Village Triangle",
+  "Business Bay",
+  "Al Jaddaf",
+  "Dubai Healthcare City",
+  "Dubai Production City",
+  "Dubai Studio City",
 ] as const;
 export type Community = (typeof COMMUNITIES)[number];
 
@@ -120,6 +129,16 @@ export type Property = {
   coordinates: Coordinates;
   /** May be empty — the location section renders without it. */
   nearby: NearbyPlace[];
+  
+  // Added for investment projects
+  investmentFocused?: boolean;
+  priceOnRequest?: boolean;
+  categories?: string[];
+  logo?: string;
+  brochure?: string;
+  floorPlans?: string[];
+  highlights?: string[];
+  developerSlug?: string;
 };
 
 /**

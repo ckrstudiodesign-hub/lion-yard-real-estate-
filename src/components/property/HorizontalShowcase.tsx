@@ -50,7 +50,7 @@ import { useSectionReveal } from "@/lib/reveal";
  */
 export function HorizontalShowcase({ id }: { id: string }) {
   const { results, narrowed, all } = usePropertyFilters();
-  const shown = narrowed ? results : all;
+  const shown = (narrowed ? results : all).slice(0, 5);
 
   const reduced = useReducedMotion();
   const pinned = !reduced;

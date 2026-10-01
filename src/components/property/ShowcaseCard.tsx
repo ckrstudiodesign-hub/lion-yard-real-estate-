@@ -51,7 +51,7 @@ export function ShowcaseCard({
         href={`/properties/${property.slug}`}
         data-cursor="view"
         onFocus={onFocus}
-        aria-label={`${property.title}, ${property.location} — ${formatPrice(property)}. View property.`}
+        aria-label={`${property.title}, ${property.location}. View property.`}
         className="group/card block h-full w-full focus-visible:outline-offset-4"
       >
         {/* Over-sized so the parallax never exposes an edge. Deliberately no
@@ -61,6 +61,7 @@ export function ShowcaseCard({
         <div data-showcase-media className="absolute inset-0 scale-[1.08]">
           <PropertyImage
             image={property.image}
+            images={property.images}
             fallbackLabel={`${property.title} — ${property.location}`}
             sizes="(min-width: 1024px) 74vw, 86vw"
           />

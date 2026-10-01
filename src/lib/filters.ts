@@ -73,6 +73,8 @@ export type PropertyFilters = {
   status: PropertyStatus | typeof ANY;
   furnished: NonNullable<Furnishing> | typeof ANY;
   featuredOnly: boolean;
+  developer: string;
+  category: string;
 };
 
 export const DEFAULT_FILTERS: PropertyFilters = {
@@ -88,6 +90,8 @@ export const DEFAULT_FILTERS: PropertyFilters = {
   status: ANY,
   furnished: ANY,
   featuredOnly: false,
+  developer: ANY,
+  category: ANY,
 };
 
 // ---------------------------------------------------------------------------
@@ -148,6 +152,31 @@ export const FURNISHED_OPTIONS: Option[] = [
   { value: ANY, label: "Any" },
   { value: "Furnished", label: "Furnished" },
   { value: "Unfurnished", label: "Unfurnished" },
+];
+
+export const DEVELOPER_OPTIONS: Option[] = [
+  { value: ANY, label: "All Developers" },
+  { value: "Nakheel", label: "Nakheel" },
+  { value: "Sobha Realty", label: "Sobha Realty" },
+  { value: "Azizi Developments", label: "Azizi Developments" },
+  { value: "DAMAC", label: "DAMAC" },
+  { value: "Danube Properties", label: "Danube Properties" },
+  { value: "Binghatti", label: "Binghatti" },
+  { value: "Deyaar", label: "Deyaar" },
+  { value: "Dugasta", label: "Dugasta" },
+];
+
+export const CATEGORY_OPTIONS: Option[] = [
+  { value: ANY, label: "All Categories" },
+  { value: "OFF-PLAN", label: "Off-Plan" },
+  { value: "READY", label: "Ready" },
+  { value: "LUXURY", label: "Luxury" },
+  { value: "WATERFRONT", label: "Waterfront" },
+  { value: "BRANDED RESIDENCES", label: "Branded Residences" },
+  { value: "VILLAS", label: "Villas" },
+  { value: "TOWNHOUSES", label: "Townhouses" },
+  { value: "APARTMENTS", label: "Apartments" },
+  { value: "PENTHOUSES", label: "Penthouses" },
 ];
 
 /** Compact money label for range controls: "AED 2M", "AED 750K". */
@@ -250,6 +279,10 @@ export function filterProperties(
 
     if (filters.featuredOnly && !property.featured) return false;
 
+    if (filters.developer !== ANY && property.developer !== filters.developer) return false;
+
+    if (filters.category !== ANY && (!property.categories || !property.categories.includes(filters.category))) return false;
+
     return true;
   });
 }
@@ -268,7 +301,9 @@ export function hasActiveFilters(filters: PropertyFilters): boolean {
     filters.areaMax !== null ||
     filters.status !== ANY ||
     filters.furnished !== ANY ||
-    filters.featuredOnly
+    filters.featuredOnly ||
+    filters.developer !== ANY ||
+    filters.category !== ANY
   );
 }
 
@@ -319,6 +354,8 @@ export function activeChips(filters: PropertyFilters): ActiveChip[] {
   if (filters.status !== ANY) chips.push({ key: "status", label: filters.status });
   if (filters.furnished !== ANY) chips.push({ key: "furnished", label: filters.furnished });
   if (filters.featuredOnly) chips.push({ key: "featuredOnly", label: "Featured only" });
+  if (filters.developer !== ANY) chips.push({ key: "developer", label: filters.developer });
+  if (filters.category !== ANY) chips.push({ key: "category", label: filters.category });
 
   return chips;
 }
@@ -389,8 +426,9 @@ export function sortProperties(properties: Property[], sort: SortId): Property[]
 
 /** AED 2,450,000 — no decimals, grouped, currency first. */
 export function formatPrice(
-  property: Pick<Property, "price" | "currency" | "listingType">,
+  property: Pick<Property, "price" | "currency" | "listingType" | "priceOnRequest">,
 ): string {
+  if (property.priceOnRequest) return "PRICE ON REQUEST";
   const amount = new Intl.NumberFormat("en-AE", { maximumFractionDigits: 0 }).format(
     property.price,
   );

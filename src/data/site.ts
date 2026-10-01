@@ -22,16 +22,16 @@ export const site = {
  * `whatsapp` must be digits only (international format, no + or spaces).
  */
 export const contact = {
-  phoneDisplay: "Available on request",
-  phoneHref: "#",
-  whatsapp: "97140000000",
+  phoneDisplay: "+971 50 152 6902",
+  phoneHref: "tel:+971501526902",
+  whatsapp: "971501526902",
   whatsappMessage: "Hello Lion Yard, I would like to speak to a property consultant.",
   email: "hello@lionyardrealestate.ae",
   emailHref: "mailto:hello@lionyardrealestate.ae",
-  address: ["Office 101, Business Bay", "Dubai, United Arab Emirates"],
+  address: ["Villa Rotana 408, Sheikh Zayed Road, Al Wasl,", "P.O. Box 118737, Dubai, United Arab Emirates."],
   instagram: "https://www.instagram.com/",
   linkedin: "https://www.linkedin.com/",
-} as const;
+};
 
 export const whatsappHref = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
   contact.whatsappMessage,

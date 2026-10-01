@@ -22,7 +22,8 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     if (reduced) return;
 
     const lenis = new Lenis({
-      duration: 1.15,
+      lerp: 0.05,
+      duration: 1.8,
       // Matches --ease-lux closely enough to feel like one system.
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,

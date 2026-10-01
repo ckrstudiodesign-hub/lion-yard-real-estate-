@@ -8,7 +8,9 @@ import {
   AREA_MIN_OPTIONS,
   BATHROOM_OPTION_LIST,
   BEDROOM_OPTION_LIST,
+  CATEGORY_OPTIONS,
   COMMUNITY_OPTIONS,
+  DEVELOPER_OPTIONS,
   FURNISHED_OPTIONS,
   PRICE_MAX_OPTIONS,
   PRICE_MIN_OPTIONS,
@@ -182,5 +184,29 @@ export function FeaturedToggle() {
         />
       </span>
     </button>
+  );
+}
+
+export function DeveloperField() {
+  const { filters, setFilter } = usePropertyFilters();
+  return (
+    <SelectField
+      label="Developer"
+      value={filters.developer}
+      options={DEVELOPER_OPTIONS}
+      onChange={(value) => setFilter("developer", value)}
+    />
+  );
+}
+
+export function CategoryField() {
+  const { filters, setFilter } = usePropertyFilters();
+  return (
+    <SelectField
+      label="Category"
+      value={filters.category}
+      options={CATEGORY_OPTIONS}
+      onChange={(value) => setFilter("category", value)}
+    />
   );
 }
