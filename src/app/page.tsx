@@ -25,7 +25,7 @@ import { ManagingDirector } from "@/components/editorial/ManagingDirector";
  * filter provider, so narrowing the search moves everything beneath it.
  */
 const RESULTS_ID = "properties";
-const COMMUNITIES_ID = "communities";
+
 const SHOWCASE_ID = "discover";
 
 export default function HomePage() {
