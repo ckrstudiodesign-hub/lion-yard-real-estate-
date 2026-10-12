@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/editorial/ContactForm";
 import { heroMedia } from "@/data/media";
 import { contact, site } from "@/data/site";
 import Image from "next/image";
+import { PlotCollection } from "@/components/property/PlotCollection";
 
 export const metadata: Metadata = {
   title: "Contact Lion Yard Real Estate",
@@ -17,14 +18,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const raw = await searchParams;
+  const isPlots = raw.service === "plots";
+
   return (
     <>
-      <PageHero
-        headline="Get in Touch."
-        supporting="Whether you are buying, selling, or investing, our advisory team is ready to discuss your requirements."
-        image={heroMedia}
-      />
+      {isPlots ? (
+        <PlotCollection />
+      ) : (
+        <PageHero
+          headline="Get in Touch."
+          supporting="Whether you are buying, selling, or investing, our advisory team is ready to discuss your requirements."
+          image={heroMedia}
+        />
+      )}
 
       <section className="shell py-[var(--spacing-section)]">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-16 border-t border-ink/10 pt-16">

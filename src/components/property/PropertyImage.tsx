@@ -89,6 +89,7 @@ export function PropertyImage({
             fill
             sizes={sizes}
             quality={82}
+            unoptimized={img.src.startsWith("/")}
             priority={priority && i === 0}
             loading={priority && i === 0 ? undefined : "lazy"}
             onError={() => setFailed(true)}

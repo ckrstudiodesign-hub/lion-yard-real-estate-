@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { DEMO_PROPERTIES } from "@/data/properties";
+import { PLOT_PROPERTIES } from "@/data/plots";
 import { primaryNav, site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...DEMO_PROPERTIES.map((property) => ({
+    ...[...DEMO_PROPERTIES, ...PLOT_PROPERTIES].map((property) => ({
       url: `${site.url}/properties/${property.slug}`,
       lastModified: now,
       changeFrequency: "weekly" as const,

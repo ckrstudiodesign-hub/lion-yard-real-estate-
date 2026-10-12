@@ -91,9 +91,13 @@ export type Property = {
   /** Human-readable location line shown on cards. */
   location: string;
   community: Community;
+  /** Emirate for land opportunities outside the existing Dubai community vocabulary. */
+  emirate?: string;
+  /** Plot-specific label shown when a record represents land rather than a residence. */
+  plotType?: string;
   price: number;
   currency: "AED";
-  propertyType: PropertyType;
+  propertyType: PropertyType | "Plot";
   listingType: ListingType;
   bedrooms: number;
   bathrooms: number;
@@ -126,7 +130,7 @@ export type Property = {
   /** ISO month for off-plan handover; null when the property is ready. */
   completionDate: string | null;
   paymentPlan: PaymentPlanStage[] | null;
-  coordinates: Coordinates;
+  coordinates: Coordinates | null;
   /** May be empty — the location section renders without it. */
   nearby: NearbyPlace[];
   

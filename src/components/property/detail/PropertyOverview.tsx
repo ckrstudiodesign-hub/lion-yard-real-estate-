@@ -71,7 +71,7 @@ export function PropertyOverview({ property }: { property: Property }) {
                 <dt className="label-caps text-[0.55rem] tracking-[0.26em] text-ink/40">
                   Community
                 </dt>
-                <dd className="mt-2.5 text-body-sm text-ink">{property.community}</dd>
+                <dd className="mt-2.5 text-body-sm text-ink">                {property.emirate ?? property.community}</dd>
               </div>
             </dl>
           </div>

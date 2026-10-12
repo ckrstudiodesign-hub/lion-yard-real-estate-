@@ -11,6 +11,7 @@ import { RelatedProperties } from "@/components/property/detail/RelatedPropertie
 import { SpecBar } from "@/components/property/detail/SpecBar";
 import { StickyPropertyBar } from "@/components/property/detail/StickyPropertyBar";
 import { DEMO_PROPERTIES, getPropertyBySlug, getRelatedProperties } from "@/data/properties";
+import { PLOT_PROPERTIES, getPlotBySlug } from "@/data/plots";
 import { formatArea, formatPrice } from "@/lib/filters";
 import { site } from "@/data/site";
 
@@ -32,19 +33,21 @@ type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return DEMO_PROPERTIES.map((property) => ({ slug: property.slug }));
+  return [...DEMO_PROPERTIES, ...PLOT_PROPERTIES].map((property) => ({ slug: property.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const property = getPropertyBySlug(slug);
+  const property = getPropertyBySlug(slug) ?? getPlotBySlug(slug);
 
   if (!property) {
     return { title: "Property not found", robots: { index: false, follow: false } };
   }
 
   const title = `${property.title} | ${property.location}`;
-  const description = `${property.shortDescription} ${formatPrice(property)}. ${formatArea(property)}.`;
+  const description = `${property.shortDescription} ${formatPrice(property)}.${
+    property.area > 0 ? ` ${formatArea(property)}.` : ""
+  }`;
 
   return {
     title,
@@ -62,7 +65,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function PropertyDetailPage({ params }: Params) {
   const { slug } = await params;
-  const property = getPropertyBySlug(slug);
+  const property = getPropertyBySlug(slug) ?? getPlotBySlug(slug);
 
   if (!property) notFound();
 
@@ -83,22 +86,30 @@ export default async function PropertyDetailPage({ params }: Params) {
     image: property.images.map((image) => image.src),
     numberOfRooms: property.bedrooms,
     numberOfBathroomsTotal: property.bathrooms,
-    floorSize: {
-      "@type": "QuantitativeValue",
-      value: property.area,
-      unitText: "square feet",
-    },
+    ...(property.area > 0
+      ? {
+          floorSize: {
+            "@type": "QuantitativeValue",
+            value: property.area,
+            unitText: "square feet",
+          },
+        }
+      : {}),
     address: {
       "@type": "PostalAddress",
       addressLocality: property.community,
-      addressRegion: "Dubai",
+      addressRegion: property.emirate ?? "Dubai",
       addressCountry: "AE",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: property.coordinates.latitude,
-      longitude: property.coordinates.longitude,
-    },
+    ...(property.coordinates
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: property.coordinates.latitude,
+            longitude: property.coordinates.longitude,
+          },
+        }
+      : {}),
     amenityFeature: property.amenities.map((amenity) => ({
       "@type": "LocationFeatureSpecification",
       name: amenity,
@@ -121,7 +132,7 @@ export default async function PropertyDetailPage({ params }: Params) {
       <PropertyOverview property={property} />
       <PropertyGallery property={property} />
       <PropertyLocation property={property} />
-      <PaymentAndValue property={property} />
+      {property.plotType ? null : <PaymentAndValue property={property} />}
       <EnquiryForm property={property} />
       <RelatedProperties properties={related} />
       <StickyPropertyBar property={property} />

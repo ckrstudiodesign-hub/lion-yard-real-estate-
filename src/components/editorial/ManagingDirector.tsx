@@ -18,6 +18,7 @@ export function ManagingDirector() {
                 src="/lion yard manging director.png"
                 alt="Kauser Nawaz, Managing Director"
                 fill
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 className="object-cover object-top"
               />
@@ -25,7 +26,7 @@ export function ManagingDirector() {
           </div>
           
           <div data-reveal="item" className="w-full lg:w-2/3 flex flex-col justify-center text-center lg:text-left">
-            <p className="label-caps text-ink/50 mb-3">Managing Director</p>
+            <p className="label-caps font-bold text-ink/50 mb-3">Founder &amp; CEO</p>
             <h2 className="display-serif text-h3 lg:text-h2 mb-5">Kauser Nawaz</h2>
             <div className="text-body text-ink/70 space-y-5 max-w-2xl mx-auto lg:mx-0">
               <p>

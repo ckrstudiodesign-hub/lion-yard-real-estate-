@@ -29,7 +29,14 @@ export function EnquiryForm({ property }: { property: Property | null }) {
   const ref = useRef<HTMLElement>(null);
   useSectionReveal(ref);
 
-  const [values, setValues] = useState({ name: "", phone: "", email: "", message: "" });
+  const [values, setValues] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: property?.plotType
+      ? `${property.title} — ${property.emirate ?? property.location}`
+      : "",
+  });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [state, setState] = useState<"idle" | "sending" | "unconfigured">("idle");
   const statusRef = useRef<HTMLDivElement>(null);
@@ -177,7 +184,11 @@ export function EnquiryForm({ property }: { property: Property | null }) {
               </div>
 
               <Button type="submit" variant="solidInk" className="mt-10" disabled={state === "sending"}>
-                {state === "sending" ? "Sending" : "Request a Viewing"}
+                {state === "sending"
+                  ? "Sending"
+                  : property?.plotType
+                    ? "Enquire About This Plot"
+                    : "Request a Viewing"}
                 <ArrowRight />
               </Button>
 

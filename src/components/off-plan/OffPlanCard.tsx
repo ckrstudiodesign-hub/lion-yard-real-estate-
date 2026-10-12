@@ -71,6 +71,7 @@ export function OffPlanCard({
                 alt={property.developer}
                 width={80}
                 height={40}
+                unoptimized
                 className="max-h-full max-w-full object-contain mix-blend-multiply"
               />
             </div>

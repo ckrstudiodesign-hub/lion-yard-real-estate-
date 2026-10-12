@@ -6,6 +6,7 @@ import { Partners } from "@/components/partners/Partners";
 import { OffPlanLuxuryCollection } from "@/components/off-plan/OffPlanLuxuryCollection";
 
 import { ManagingDirector } from "@/components/editorial/ManagingDirector";
+import { Team } from "@/components/editorial/Team";
 
 /**
  * Homepage flow:
@@ -36,6 +37,7 @@ export default function HomePage() {
       <Partners />
       <OffPlanLuxuryCollection />
       <ManagingDirector />
+      <Team />
       <FeaturedProperties id={RESULTS_ID} />
       <HorizontalShowcase id={SHOWCASE_ID} />
     </PropertyFilterProvider>

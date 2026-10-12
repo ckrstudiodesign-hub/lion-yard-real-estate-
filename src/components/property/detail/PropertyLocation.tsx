@@ -26,8 +26,10 @@ export function PropertyLocation({ property }: { property: Property }) {
   const ref = useRef<HTMLElement>(null);
   useSectionReveal(ref);
 
-  const { latitude, longitude } = property.coordinates;
-  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+  const coordinates = property.coordinates;
+  const mapsHref = coordinates
+    ? `https://www.google.com/maps/search/?api=1&query=${coordinates.latitude},${coordinates.longitude}`
+    : null;
   const anyIllustrative = property.nearby.some((place) => place.illustrative);
 
   return (
@@ -49,11 +51,11 @@ export function PropertyLocation({ property }: { property: Property }) {
               data-reveal="item"
               className="display-serif mt-7 text-h2 leading-[1.02]"
             >
-              {property.community}
+              {property.emirate ?? property.community}
             </h2>
           </div>
 
-          <a
+          {mapsHref ? <a
             data-reveal="item"
             href={mapsHref}
             target="_blank"
@@ -64,12 +66,11 @@ export function PropertyLocation({ property }: { property: Property }) {
             <svg viewBox="0 0 14 14" aria-hidden="true" className="h-3 w-3 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
               <path d="M4 10 10 4M5 4h5v5" stroke="currentColor" strokeWidth="1.2" fill="none" />
             </svg>
-          </a>
+          </a> : null}
         </header>
 
         <div className="mt-12 grid grid-cols-1 gap-x-14 gap-y-12 sm:mt-16 lg:grid-cols-12">
-          {/* ---- Map panel --------------------------------------------- */}
-          <div data-reveal="media" className="lg:col-span-7">
+          {coordinates ? <div data-reveal="media" className="lg:col-span-7">
             <div className="relative aspect-[16/11] w-full overflow-hidden border border-ink/15 bg-[#E2DFD7]">
               {/* A quiet field of rules — not a drawn city. It reads as a plan
                   without pretending to be a survey. */}
@@ -106,7 +107,7 @@ export function PropertyLocation({ property }: { property: Property }) {
                     Coordinates
                   </p>
                   <p className="mt-2 text-body-sm tabular-nums text-ink/70">
-                    {latitude.toFixed(4)}, {longitude.toFixed(4)}
+                    {coordinates.latitude.toFixed(4)}, {coordinates.longitude.toFixed(4)}
                   </p>
                 </div>
                 <p className="label-caps text-[0.5rem] tracking-[0.22em] text-ink/35">
@@ -114,7 +115,7 @@ export function PropertyLocation({ property }: { property: Property }) {
                 </p>
               </div>
             </div>
-          </div>
+          </div> : null}
 
           {/* ---- Nearby ------------------------------------------------- */}
           {property.nearby.length > 0 ? (

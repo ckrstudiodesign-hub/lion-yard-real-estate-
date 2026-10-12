@@ -57,9 +57,6 @@ export function PropertyCard({
       ? "New"
       : null;
 
-  const beds = `${property.bedrooms} ${property.bedrooms === 1 ? "Bed" : "Beds"}`;
-  const baths = `${property.bathrooms} ${property.bathrooms === 1 ? "Bath" : "Baths"}`;
-
   return (
     <article className={cn("group/card", className)}>
       <TransitionLink
@@ -109,11 +106,15 @@ export function PropertyCard({
           </p>
 
           <p className="mt-3 label-caps text-[0.55rem] tracking-[0.22em] text-current/45">
-            {property.propertyType}
-            <span aria-hidden="true" className="mx-2 text-current/25">·</span>
-            {beds}
-            <span aria-hidden="true" className="mx-2 text-current/25">·</span>
-            {baths}
+            {property.plotType ?? property.propertyType}
+            {!property.plotType ? (
+              <>
+                <span aria-hidden="true" className="mx-2 text-current/25">·</span>
+                {`${property.bedrooms} ${property.bedrooms === 1 ? "Bed" : "Beds"}`}
+                <span aria-hidden="true" className="mx-2 text-current/25">·</span>
+                {`${property.bathrooms} ${property.bathrooms === 1 ? "Bath" : "Baths"}`}
+              </>
+            ) : null}
           </p>
 
           <p className="display-serif mt-5 text-[1.25rem] leading-none text-current/90">

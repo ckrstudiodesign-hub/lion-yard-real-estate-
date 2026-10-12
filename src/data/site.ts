@@ -44,12 +44,32 @@ export type NavItem = {
   ready: boolean;
 };
 
+export type PlotLocation = {
+  label: string;
+  href: string;
+  project?: {
+    label: string;
+    href: string;
+  };
+};
+
+export const plotLocations: PlotLocation[] = [
+  { label: "Dubai", href: "/contact?service=plots&location=dubai" },
+  { label: "Ajman", href: "/contact?service=plots&location=ajman" },
+  {
+    label: "Ras Al Khaimah (RAK)",
+    href: "/contact?service=plots&location=ras-al-khaimah",
+    project: { label: "RAK Oasis", href: "https://www.rakoasis.com/" },
+  },
+  { label: "Umm Al Quwain (UAQ)", href: "/contact?service=plots&location=umm-al-quwain" },
+];
+
 export const primaryNav: NavItem[] = [
   { label: "Buy", href: "/buy", ready: true },
   { label: "Sell", href: "/sell", ready: true },
   { label: "Properties", href: "/properties", ready: true },
   { label: "Communities", href: "/communities", ready: true },
-  { label: "Invest", href: "/invest", ready: true },
+  { label: "Plots", href: "/contact?service=plots", ready: true },
   { label: "About", href: "/about", ready: true },
   { label: "Contact", href: "/contact", ready: true },
 ];
