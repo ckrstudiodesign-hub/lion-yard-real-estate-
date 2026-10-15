@@ -135,10 +135,10 @@ export function TeamSection({ members = teamData }: { members?: TeamMember[] }) 
               Advisory Team
             </Badge>
             <div className="flex flex-col items-center justify-center gap-3">
-              <h2 className="text-3xl md:text-5xl font-semibold text-foreground display-serif">
+              <h2 className="text-3xl md:text-5xl font-semibold text-ink display-serif">
                 The people behind Lion Yard
               </h2>
-              <p className="text-base font-normal text-muted-foreground">
+              <p className="text-base font-normal text-ink/70">
                 Our team is committed to redefining Dubai luxury property advisory
                 through tailored insight, discreet service, and market expertise.
               </p>
@@ -189,10 +189,7 @@ export function TeamSection({ members = teamData }: { members?: TeamMember[] }) 
                     )}
                   </div>
                   <div className="flex flex-col gap-1 w-full">
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-ink/50 font-medium">
-                      {value.role}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-medium text-foreground display-serif">
+                    <h3 className="text-xl sm:text-2xl font-medium text-ink display-serif">
                       {value.name}
                     </h3>
                   </div>

@@ -29,26 +29,28 @@ export default function AboutPage() {
         secondaryCta={{ label: "View Properties", href: "/properties" }}
       />
 
-      <section className="shell py-[var(--spacing-section)]">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-16 items-center">
-          <div className="lg:col-span-5">
-            <h2 data-reveal="item" className="display-serif text-h2 mb-6">
-              Our Story
-            </h2>
-            <p data-reveal="item" className="text-body text-ink/70 max-w-[40ch] mb-6">
-              Lion Yard was founded to serve a segment of the market that values privacy and deep market knowledge over mass marketing. We act as long-term advisors to our clients, guiding them through the complexities of the Dubai real estate landscape.
-            </p>
-            <p data-reveal="item" className="text-body text-ink/70 max-w-[40ch]">
-              We believe in quality over quantity. By limiting the volume of our active mandates, we ensure that every client receives our undivided attention and the full benefit of our market experience.
-            </p>
-          </div>
-          <div className="lg:col-span-7 h-[600px] relative bg-charcoal">
-            <Image
-              src="/property images/Sobha/Sobha Central/sobha-central.jpg"
-              alt="Office interior"
-              fill
-              className="object-cover"
-            />
+      <section data-surface="light" className="relative z-10 bg-bone text-ink">
+        <div className="shell py-[var(--spacing-section)]">
+          <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-16 items-center">
+            <div className="lg:col-span-5">
+              <h2 data-reveal="item" className="display-serif text-h2 mb-6">
+                Our Story
+              </h2>
+              <p data-reveal="item" className="text-body text-ink/70 max-w-[40ch] mb-6">
+                Lion Yard was founded to serve a segment of the market that values privacy and deep market knowledge over mass marketing. We act as long-term advisors to our clients, guiding them through the complexities of the Dubai real estate landscape.
+              </p>
+              <p data-reveal="item" className="text-body text-ink/70 max-w-[40ch]">
+                We believe in quality over quantity. By limiting the volume of our active mandates, we ensure that every client receives our undivided attention and the full benefit of our market experience.
+              </p>
+            </div>
+            <div className="lg:col-span-7 h-[600px] relative bg-charcoal">
+              <Image
+                src="/property images/Sobha/Sobha Central/sobha-central.jpg"
+                alt="Office interior"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

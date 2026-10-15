@@ -202,10 +202,13 @@ export function NavOverlay({
               <ButtonLink 
                 href="/contact" 
                 onClick={onClose} 
-                className="w-full sm:w-[240px] h-[56px] sm:h-[60px] bg-bone text-ink hover:bg-bone/90 transition-colors rounded-none"
+                variant="solid"
+                className="w-full sm:w-[240px] h-[56px] sm:h-[60px] bg-bone text-ink hover:border-champagne rounded-none"
               >
-                Enquire Now
-                <ArrowRight />
+                <span className="transition-colors duration-300 group-hover/btn:text-champagne">
+                  Enquire Now
+                </span>
+                <ArrowRight className="transition-colors duration-300 group-hover/btn:text-champagne" />
               </ButtonLink>
             </div>
 
@@ -224,7 +227,7 @@ export function NavOverlay({
               )}
               <a
                 href={contact.emailHref}
-                className="text-body-sm opacity-60 transition-opacity duration-[220ms] hover:opacity-100 mt-1"
+                className="text-body-sm opacity-80 transition-opacity duration-[220ms] hover:opacity-100 mt-1"
               >
                 {contact.email}
               </a>

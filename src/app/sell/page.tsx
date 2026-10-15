@@ -96,46 +96,48 @@ export default function SellPage() {
 
       <ValuationForm />
 
-      <section className="shell py-[var(--spacing-section)]">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-16">
-          <div className="lg:col-span-5">
-            <h2 data-reveal="item" className="display-serif text-h2 mb-6">
-              Frequently Asked Questions
-            </h2>
-            <p data-reveal="item" className="text-body text-ink/60 max-w-[40ch]">
-              Clear answers on how we manage the sale of your property from valuation to handover.
-            </p>
-          </div>
-          <div className="lg:col-span-7">
-            <Accordion
-              items={[
-                {
-                  id: "faq-1",
-                  question: "How does the valuation process work?",
-                  answer: "We assess your property against recent transactions and active market data to provide a realistic and achievable valuation, rather than an inflated promise.",
-                },
-                {
-                  id: "faq-2",
-                  question: "What information do I need to provide?",
-                  answer: "To begin, we require the title deed, passport copies of the owners, and details of any current tenancy agreements or service charge statuses.",
-                },
-                {
-                  id: "faq-3",
-                  question: "How is my property marketed?",
-                  answer: "We use a combination of premium property portals, our internal client network, and targeted digital marketing to ensure your property reaches qualified buyers.",
-                },
-                {
-                  id: "faq-4",
-                  question: "How are viewings handled?",
-                  answer: "All viewings are accompanied by a dedicated Lion Yard advisor. We qualify potential buyers beforehand to ensure we only bring genuine interest to your door.",
-                },
-                {
-                  id: "faq-5",
-                  question: "How do I get started?",
-                  answer: "Simply submit a valuation request or contact us directly. An advisor will arrange a convenient time to visit the property and discuss your objectives.",
-                },
-              ]}
-            />
+      <section data-surface="light" className="relative z-10 bg-bone text-ink">
+        <div className="shell py-[var(--spacing-section)]">
+          <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-16">
+            <div className="lg:col-span-5">
+              <h2 data-reveal="item" className="display-serif text-h2 mb-6">
+                Frequently Asked Questions
+              </h2>
+              <p data-reveal="item" className="text-body text-ink/60 max-w-[40ch]">
+                Clear answers on how we manage the sale of your property from valuation to handover.
+              </p>
+            </div>
+            <div className="lg:col-span-7">
+              <Accordion
+                items={[
+                  {
+                    id: "faq-1",
+                    question: "How does the valuation process work?",
+                    answer: "We assess your property against recent transactions and active market data to provide a realistic and achievable valuation, rather than an inflated promise.",
+                  },
+                  {
+                    id: "faq-2",
+                    question: "What information do I need to provide?",
+                    answer: "To begin, we require the title deed, passport copies of the owners, and details of any current tenancy agreements or service charge statuses.",
+                  },
+                  {
+                    id: "faq-3",
+                    question: "How is my property marketed?",
+                    answer: "We use a combination of premium property portals, our internal client network, and targeted digital marketing to ensure your property reaches qualified buyers.",
+                  },
+                  {
+                    id: "faq-4",
+                    question: "How are viewings handled?",
+                    answer: "All viewings are accompanied by a dedicated Lion Yard advisor. We qualify potential buyers beforehand to ensure we only bring genuine interest to your door.",
+                  },
+                  {
+                    id: "faq-5",
+                    question: "How do I get started?",
+                    answer: "Simply submit a valuation request or contact us directly. An advisor will arrange a convenient time to visit the property and discuss your objectives.",
+                  },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </section>
